@@ -1,6 +1,6 @@
 from flask-redis import redis
 from flask-SqlAlchemy import SQLAlchemy
-from flask-login import LoginManager
+from flask_login import LoginManager
 
 db = SQLAlchemy()
 
