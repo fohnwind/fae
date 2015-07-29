@@ -1,6 +1,4 @@
 __author__ = 'fohnwind'
 
+from fae.app import create_app
 
-from flask import Flask
-
-app = Flask(__name__)
