@@ -14,7 +14,7 @@ class DefaultConfig(object):
     # URL Prefixes
     USER_URL_PREFIX = "/u"
     AUTH_URL_PREFIX = "/a"
-    CONTAINER_URL_PREFIX = "/c"
+    PROJECT_URL_PREFIX = "/p"
     HOMEPAGE_URL_REFIX = ""
 
     # DB

@@ -26,3 +26,4 @@ class LoginForm(Form):
     submit = SubmitField(_("Login"))
 
 class RegisterForm(Form):
+    pass
