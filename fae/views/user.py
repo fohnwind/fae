@@ -8,8 +8,16 @@ from flask_login import login_required
 user = Blueprint("user", __name__)
 
 
+@user.route("/")
+@user.route("/project")
+def user_project():
+    pass
+
+
 @user.route("/<username>")
 @user.route("/profile/<username>")
 @login_required
 def profile(username):
     pass
+
+

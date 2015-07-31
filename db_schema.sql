@@ -10,6 +10,7 @@ create table `user` (
     `username` varchar(32) NOT NULL,
     `password` varchar(128) DEFAULT NULL,
     `user_level` int(4) DEFAULT 0,
+    `project_count` int(4) DEFAULT 0,
      PRIMARY KEY (`uid`)
 ) CHARSET=utf8;
 
@@ -18,6 +19,7 @@ drop table if exsits `project`;
 create table `project` (
     `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `pname` varchar(32) NOT NULL,
+    `container_ip` varchar(32) NOT NULL DEFAULT "172.17.0.1",
     `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `type` varchar(10) NOT NULL,
     `intro` text DEFAULT "",
