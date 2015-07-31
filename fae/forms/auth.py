@@ -10,20 +10,21 @@ from fae.models.user import User
 
 USERNAME_RE = r'^[\w.+-]+$'
 is_username = regexp(USERNAME_RE,
-                     message=_("You can only use letters, numbers or dashes."))
+                     message="You can only use letters, numbers or dashes.")
 
 class LoginForm(Form):
-    login = StringField(_("Username"), validators=[
-        DataRequired(message=_("a username is required."))
+    login = StringField("Username", validators=[
+        DataRequired(message="a username is required.")
     ])
 
-    password = PasswordField(_("password"), validators=[
-        DataRequired(message=_("a password is required."))
+    password = PasswordField("password", validators=[
+        DataRequired(message="a password is required.")
     ])
 
-    remember_me = BooleanField(_("Rememberme"), default=False)
+    remember_me = BooleanField("Rememberme", default=False)
 
-    submit = SubmitField(_("Login"))
+    submit = SubmitField("Login")
+
 
 class RegisterForm(Form):
     pass

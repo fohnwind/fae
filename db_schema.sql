@@ -1,9 +1,9 @@
-DROP DATABASE if exsits fae;
+DROP DATABASE if exists fae;
 CREATE DATABASE fae;
 
 use fae;
 
-drop table if exsits `user`;
+drop table if exists `user`;
 create table `user` (
     `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `sina_uid` bigint(20) unsigned DEFAULT NULL,
@@ -15,7 +15,7 @@ create table `user` (
 ) CHARSET=utf8;
 
 
-drop table if exsits `project`;
+drop table if exists `project`;
 create table `project` (
     `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `pname` varchar(32) NOT NULL,
@@ -23,18 +23,19 @@ create table `project` (
     `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `type` varchar(10) NOT NULL,
     `intro` text DEFAULT "",
-    `owner` int(10) unsigned NOT NULL
+    `owner` int(10) unsigned NOT NULL,
+    PRIMARY KEY (`pid`)
 ) CHARSET=utf8;
 
 
-drop table if exsits `level`;
+drop table if exists `level`;
 create table `level` (
     `code` int(4) unsigned,
     `rank` varchar(10)
 ) CHARSET=utf8;
 
 
-drop table if exsits `version`;
+drop table if exists `version`;
 create table `version` (
     `pid` int(10) unsigned NOT NULL,
     `version` int(4) unsigned NOT NULL DEFAULT 1,
@@ -43,7 +44,7 @@ create table `version` (
 ) CHARSET=utf8;
 
 
-drop table if exsits `container_logs`;
+drop table if exists `container_logs`;
 create table `container_logs` (
     `clog_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `pid` int(10) unsigned NOT NULL,
@@ -53,12 +54,12 @@ create table `container_logs` (
 ) CHARSET=utf8;
 
 
-drop table if exsits `project_logs`;
+drop table if exists `project_logs`;
 create table `project_logs` (
     `plog_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `pid` int(10) unsigned NOT NULL,
     `info` varchar(128) NOT NULL DEFAULT "",
     `actor` varchar(32) NOT NULL,
-    `act_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+    `act_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`plog_id`)
 ) CHARSET=utf8;

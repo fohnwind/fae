@@ -18,5 +18,5 @@ class DefaultConfig(object):
     HOMEPAGE_URL_REFIX = ""
 
     # DB
-    SQLALCHEMY_DATABASES_URI = 'mysql://'
+    SQLALCHEMY_DATABASES_URI = 'mysql://127.0.0.1:3306'
     SQLALCHEMY_ECHO = False

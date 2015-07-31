@@ -30,5 +30,9 @@ def configure_blueprint(app):
 def configure_extensions(app):
     db.init_app(app)
 
+    login_manager.login_view = app.config["LOGIN_VIEW"]
+    login_manager.init_app(app)
+
     redis_store.init_app(app)
     pass
+
