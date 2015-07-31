@@ -1,8 +1,25 @@
 <!DOCTYPE html>
 <html>
-<meta charset="UTF-8">
-<title>FAE</title>
-    <link rel=stylesheet type=text/css href="{{ url_for('static',filename='css/style.css') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="fohnwind.">
+    <meta name="description" content="simple F app engine" >
+    <title>
+    {% block title %}
+        {%- if not page_title -%}
+            {{ fae_config["PROJECT-TITLE"] }} - {{ fae_config["PROJECT_SUBTITLE"] }}
+        {%- else -%}
+            {{ page_title }} - {{ fae_config["PROJECT_TITLE"] }}
+        {%- endif -%}
+    {% endblock %}
+    </title>
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+</head>
 
 <body>
 
