@@ -44,6 +44,7 @@ def logout():
 
 @auth.route("/register", methods=["GET", "POST"])
 def register():
-    pass
+    return "register"
+
 
 
