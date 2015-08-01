@@ -25,6 +25,7 @@ def login():
                             url_for("user.index"))
 
         flash(_("wrong Username of Password."), "danger")
+
     fae_config = {'PROJECT_TITLE':"Auth", "PROJECT_SUBTITLE":"login"}
     return render_template("auth/login.html", form=form,fae_config=fae_config, page_title="FAE")
 
