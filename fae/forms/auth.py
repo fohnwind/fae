@@ -13,11 +13,11 @@ is_username = regexp(USERNAME_RE,
                      message="You can only use letters, numbers or dashes.")
 
 class LoginForm(Form):
-    login = StringField("Username", validators=[
+    username = StringField("Username", validators=[
         DataRequired(message="a username is required.")
     ])
 
-    password = PasswordField("password", validators=[
+    password = PasswordField("Password", validators=[
         DataRequired(message="a password is required.")
     ])
 
@@ -27,4 +27,28 @@ class LoginForm(Form):
 
 
 class RegisterForm(Form):
-    pass
+    username = StringField("Username",validators=[
+        DataRequired(message="a username is required.")
+    ])
+
+    password = PasswordField("Password", validators=[
+        DataRequired(message="a password is required.")
+    ])
+
+    confirm_password= PasswordField("Confirm password.")
+
+    submit = SubmitField("Register")
+
+    def validate_username(self, field):
+        user = User.query.filter_by(username=field.data).first()
+        if user:
+            raise ValidationError("Username already exsits.")
+
+    def save(self):
+        user = User(username=self.username.data,
+                    password=self.password.data,
+                    project_count=0,
+                    user_level=0)
+
+        return user.save()
+

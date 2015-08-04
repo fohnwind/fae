@@ -6,6 +6,7 @@ from views.auth import auth
 from views.user import user
 from views.project import project
 from extensions import *
+from fae.configs.fae_config import fae_config
 
 def create_app(config=None):
     """Create the app."""
@@ -16,6 +17,7 @@ def create_app(config=None):
     app.config.from_object(config)
     configure_blueprint(app)
     configure_extensions(app)
+    configure_context_processors(app)
 
     return app
 
@@ -36,3 +38,13 @@ def configure_extensions(app):
     redis_store.init_app(app)
     pass
 
+def configure_context_processors(app):
+    """Configures the context processors."""
+
+    @app.context_processor
+    def inject_flaskbb_config():
+        """Injects the ``flaskbb_config`` config variable into the
+        templates.
+        """
+
+        return dict(fae_config=fae_config)

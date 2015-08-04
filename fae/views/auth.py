@@ -3,7 +3,7 @@ __author__ = 'fohnwind'
 from flask import Blueprint,render_template, redirect, url_for ,request, flash
 from flask_login import (current_user, login_user, login_required,
                          logout_user, confirm_login, login_fresh)
-from fae.forms.auth import LoginForm
+from fae.forms.auth import LoginForm, RegisterForm
 from fae.models.user import User
 
 
@@ -27,7 +27,7 @@ def login():
         flash(_("wrong Username of Password."), "danger")
 
     fae_config = {'PROJECT_TITLE':"Auth", "PROJECT_SUBTITLE":"login"}
-    return render_template("auth/login.html", form=form,fae_config=fae_config, page_title="FAE")
+    return render_template("auth/login.html", form=form)
 
 
 @auth.route("/oauth", methods=["GET", "POST"])
@@ -44,6 +44,21 @@ def logout():
 
 @auth.route("/register", methods=["GET", "POST"])
 def register():
+
+    if current_user is not None and current_user.is_authenticated():
+        return redirect(url_for("user.index", username=current_user.username))
+
+    form = RegisterForm(request.form)
+
+    if form.validate_on_submit():
+        user = form.save()
+        login_user(user)
+
+        flash("Thanks for registering.", "success")
+        return redirect(url_for("user.index",username=current_user.username))
+
+    return render_template("auth/register.html", form=form)
+
     return "register"
 
 

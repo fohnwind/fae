@@ -58,3 +58,6 @@ target/
 
 # Flask
 .idea/
+
+# Docker
+fae/docker/

@@ -51,3 +51,13 @@ class User(db.Model):
 
     def all_project(self):
         return Project.query.filter(Project.owner == self.id)
+
+    def save(self):
+
+        db.session.add(self)
+        db.session.commit()
+
+        return self
+
+    def delete(self):
+        pass

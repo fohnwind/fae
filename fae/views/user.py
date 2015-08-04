@@ -9,8 +9,10 @@ user = Blueprint("user", __name__)
 
 
 @user.route("/")
+@user.route("/index")
 @user.route("/project")
-def user_project():
+@login_required
+def project_list():
     pass
 
 
@@ -21,3 +23,8 @@ def profile(username):
     pass
 
 
+
+@user.route("/project/<pname>")
+@login_required
+def project_item(pname):
+    pass
