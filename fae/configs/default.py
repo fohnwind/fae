@@ -20,3 +20,7 @@ class DefaultConfig(object):
     # DB
     SQLALCHEMY_DATABASES_URI = 'mysql://127.0.0.1:3306'
     SQLALCHEMY_ECHO = False
+
+    # UPLOAD
+    UPLOAD_FOLDER = '/home/fohnwind/fae/html/fae/uploads'
+    ALLOWED_EXTENSIONS = {'zip', 'tar.gz', 'tar.bz2', 'php', 'py'}

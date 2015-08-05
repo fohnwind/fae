@@ -2,6 +2,8 @@ __author__ = 'fohnwind'
 
 from fae.extensions import db
 from fae.models.project import Project
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 class User(db.Model):
 
@@ -50,14 +52,11 @@ class User(db.Model):
         return authenticated
 
     def all_project(self):
-        return Project.query.filter(Project.owner == self.id)
+        return Project.query.filter_by(Project.owner == self.id)
 
     def save(self):
-
         db.session.add(self)
         db.session.commit()
 
         return self
 
-    def delete(self):
-        pass

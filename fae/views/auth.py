@@ -16,17 +16,22 @@ def login():
         return redirect(url_for("user.profile"))
 
     form = LoginForm(request.form)
+
+    print form.validate_on_submit()
+    print form.data
+
     if form.validate_on_submit():
+        print "1"
         user, authenticated = User.authenticate(form.login.data,
                                                 form.password.data)
         if user and authenticated:
             login_user(user, remember=form.remember_me.data)
             return redirect(request.args.get("next") or
                             url_for("user.index"))
+        print "2"
+        flash("wrong Username of Password.", "danger")
+    print "3"
 
-        flash(_("wrong Username of Password."), "danger")
-
-    fae_config = {'PROJECT_TITLE':"Auth", "PROJECT_SUBTITLE":"login"}
     return render_template("auth/login.html", form=form)
 
 

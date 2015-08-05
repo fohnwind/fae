@@ -2,20 +2,19 @@
 {% extends "layout.html" %}
 {% block body %}
 <div class="container">
-    <form class="form-signin">
+    <form class="form-signin" method="POST" action="login">
         <h2 class="form-signin-heading">Sign in for FAE</h2>
         <hr>
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember_me"> Remember me
-            </label>
+        {{ form.username.label }}
+        {{ form.username(class='form-control login-field', placeholder='Username', size=30) }}
 
+        {{ form.password.label }}
+        {{ form.password(class='form-control login-field', placeholder='Password', size=30)}}
+        <div class="checkbox">
+                {{ form.remember_me.label }}
+                {{ form.remember_me }}
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            {{ form.submit(class="btn btn-lg btn-primary btn-block") }}
         <br>
          <label>
                 <wb:login-button type="4,4" onlogin="login" onlogout="logout">weibo Login</wb:login-button>

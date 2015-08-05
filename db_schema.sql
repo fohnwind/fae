@@ -39,6 +39,7 @@ drop table if exists `version`;
 create table `version` (
     `pid` int(10) unsigned NOT NULL,
     `version` int(4) unsigned NOT NULL DEFAULT 1,
+    `v_name` varchar(32) DEFAULT "",
     `path` text NOT NULL,
     `info` varchar(128)
 ) CHARSET=utf8;

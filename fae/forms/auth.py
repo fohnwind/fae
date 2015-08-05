@@ -12,6 +12,7 @@ USERNAME_RE = r'^[\w.+-]+$'
 is_username = regexp(USERNAME_RE,
                      message="You can only use letters, numbers or dashes.")
 
+
 class LoginForm(Form):
     username = StringField("Username", validators=[
         DataRequired(message="a username is required.")
@@ -21,9 +22,9 @@ class LoginForm(Form):
         DataRequired(message="a password is required.")
     ])
 
-    remember_me = BooleanField("Rememberme", default=False)
+    remember_me = BooleanField("Remember me", default=False)
 
-    submit = SubmitField("Login")
+    submit = SubmitField("Sign in")
 
 
 class RegisterForm(Form):
