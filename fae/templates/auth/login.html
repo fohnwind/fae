@@ -6,19 +6,16 @@
         <h2 class="form-signin-heading">Sign in for FAE</h2>
         <hr>
         {{ form.username.label }}
-        {{ form.username(class='form-control login-field', placeholder='Username', size=30) }}
+        {{ form.username(class="form-control", placeholder="Username", size=30) }}
 
         {{ form.password.label }}
-        {{ form.password(class='form-control login-field', placeholder='Password', size=30)}}
+        {{ form.password(class='form-control', placeholder='Password', size=40) }}
         <div class="checkbox">
                 {{ form.remember_me.label }}
                 {{ form.remember_me }}
         </div>
             {{ form.submit(class="btn btn-lg btn-primary btn-block") }}
         <br>
-         <label>
-                <wb:login-button type="4,4" onlogin="login" onlogout="logout">weibo Login</wb:login-button>
-         </label>
     </form>
 
 </div>

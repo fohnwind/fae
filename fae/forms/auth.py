@@ -1,30 +1,26 @@
-__author__ = 'fohnwind'
+#__author__ = 'fohnwind'
 
 
-from flask_wtf import Form , RecaptchaField
+from flask_wtf import Form, RecaptchaField
 from wtforms import (StringField, PasswordField, BooleanField, HiddenField,
-                     SubmitField)
+                     SubmitField, TextField)
 from wtforms.validators import (DataRequired, InputRequired, Email, EqualTo,
                                 regexp, ValidationError)
 from fae.models.user import User
-
+from flask_babelex import lazy_gettext as _
 USERNAME_RE = r'^[\w.+-]+$'
 is_username = regexp(USERNAME_RE,
                      message="You can only use letters, numbers or dashes.")
 
 
 class LoginForm(Form):
-    username = StringField("Username", validators=[
-        DataRequired(message="a username is required.")
-    ])
+    username = StringField(_("Username"))
 
-    password = PasswordField("Password", validators=[
-        DataRequired(message="a password is required.")
-    ])
+    password = StringField(_("Password"))
 
-    remember_me = BooleanField("Remember me", default=False)
+    remember_me = BooleanField(_("Remember me"), default=False)
 
-    submit = SubmitField("Sign in")
+    submit = SubmitField(_("Sign in"))
 
 
 class RegisterForm(Form):

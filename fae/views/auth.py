@@ -15,14 +15,14 @@ def login():
     if current_user is not None and current_user.is_authenticated():
         return redirect(url_for("user.profile"))
 
-    form = LoginForm(request.form)
-
-    print form.validate_on_submit()
+    # print request.form
+    print request.form.get("password")
+    form = LoginForm(username=request.form.get("password"))
     print form.data
-
+    print form.username, form.password
     if form.validate_on_submit():
         print "1"
-        user, authenticated = User.authenticate(form.login.data,
+        user, authenticated = User.authenticate(form.username.data,
                                                 form.password.data)
         if user and authenticated:
             login_user(user, remember=form.remember_me.data)
