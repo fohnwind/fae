@@ -3,7 +3,7 @@
 
 from flask_wtf import Form, RecaptchaField
 from wtforms import (StringField, PasswordField, BooleanField, HiddenField,
-                     SubmitField, TextField)
+                     SubmitField)
 from wtforms.validators import (DataRequired, InputRequired, Email, EqualTo,
                                 regexp, ValidationError)
 from fae.models.user import User
@@ -19,7 +19,8 @@ class LoginForm(Form):
     )
 
     password = PasswordField(_("Password"), validators=[
-        DataRequired(message=_("A Password is required."))])
+        DataRequired(message=_("A Password is required."))]
+    )
 
     remember_me = BooleanField(_("Remember Me"), default=False)
 

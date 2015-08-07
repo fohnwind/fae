@@ -17,5 +17,5 @@ def about():
 
 
 @homepage.route("/guide")
-def user_guide():
+def guide():
     return render_template("homepage/guide.html")

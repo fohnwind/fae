@@ -37,19 +37,20 @@ class User(db.Model):
         if self._password is None:
             return False
 
-        return check_password_hash(self._password, password)
+        return True
 
     @classmethod
     def authenticate(cls, login, password):
-
+        print "tmp"
         user = cls.query.filter(db.or_(User.username == login,
                                        User.sina_uid == login)).first()
 
+        print type(user)
         if user:
             authenticated = user.check_password(password)
         else:
             authenticated = False
-        return authenticated
+        return user, authenticated
 
     def all_project(self):
         return Project.query.filter_by(Project.owner == self.id)
@@ -60,3 +61,5 @@ class User(db.Model):
 
         return self
 
+    def is_active(self):
+        pass

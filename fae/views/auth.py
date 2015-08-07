@@ -16,16 +16,20 @@ def login():
         return redirect(url_for("user.profile"))
 
     # print request.form
-    form = LoginForm(username=request.form.get("password"))
+    form = LoginForm(request.form)
+
+    print type(form.username), type(form.password.data)
 
     if form.validate_on_submit():
         print "1"
         user, authenticated = User.authenticate(form.username.data,
                                                 form.password.data)
+
+        print "get user"
         if user and authenticated:
             login_user(user, remember=form.remember_me.data)
             return redirect(request.args.get("next") or
-                            url_for("user.index"))
+                            url_for('user.index'))
         print "2"
         flash("wrong Username of Password.", "danger")
     print "3"
