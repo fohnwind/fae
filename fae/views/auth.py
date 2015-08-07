@@ -16,10 +16,8 @@ def login():
         return redirect(url_for("user.profile"))
 
     # print request.form
-    print request.form.get("password")
     form = LoginForm(username=request.form.get("password"))
-    print form.data
-    print form.username, form.password
+
     if form.validate_on_submit():
         print "1"
         user, authenticated = User.authenticate(form.username.data,

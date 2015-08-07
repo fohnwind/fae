@@ -14,11 +14,14 @@ is_username = regexp(USERNAME_RE,
 
 
 class LoginForm(Form):
-    username = StringField(_("Username"))
+    username = StringField(_("Username"), validators=[
+        DataRequired(message=_("A Username is required."))]
+    )
 
-    password = StringField(_("Password"))
+    password = PasswordField(_("Password"), validators=[
+        DataRequired(message=_("A Password is required."))])
 
-    remember_me = BooleanField(_("Remember me"), default=False)
+    remember_me = BooleanField(_("Remember Me"), default=False)
 
     submit = SubmitField(_("Sign in"))
 

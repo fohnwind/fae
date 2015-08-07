@@ -16,7 +16,7 @@ class User(db.Model):
     user_level = db.Column(db.Integer(), default=0)
     project_count = db.Column(db.Integer(), default=0)
 
-    projects = db.relationship("project", backref='user', lazy='dynamic')
+    #projects = db.relationship("project", backref='user', lazy='dynamic')
 
     @property
     def levels(self):
