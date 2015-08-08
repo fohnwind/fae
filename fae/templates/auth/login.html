@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 {% block body %}
 <div class="container">
-    <form class="form-signin" method="POST" action="login">
+    <form class="form-signin" method="POST" action="{{ url_for('auth.login') }}">
         <h2 class="form-signin-heading">Sign in for FAE</h2>
         <hr>
         {{ form.username.label }}

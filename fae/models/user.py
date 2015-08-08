@@ -18,6 +18,9 @@ class User(db.Model):
 
     #projects = db.relationship("project", backref='user', lazy='dynamic')
 
+    def __init__(self, *args, **kwargs):
+        super(User, self).__init__(*args,**kwargs)
+
     @property
     def levels(self):
         return self.get_levels()
@@ -37,7 +40,7 @@ class User(db.Model):
         if self._password is None:
             return False
 
-        return True
+        return check_password_hash(self._password, password)
 
     @classmethod
     def authenticate(cls, login, password):
@@ -56,6 +59,7 @@ class User(db.Model):
         return Project.query.filter_by(Project.owner == self.id)
 
     def save(self):
+        print self.username
         db.session.add(self)
         db.session.commit()
 

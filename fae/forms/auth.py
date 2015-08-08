@@ -46,10 +46,9 @@ class RegisterForm(Form):
             raise ValidationError("Username already exsits.")
 
     def save(self):
+        print self.password.data
         user = User(username=self.username.data,
-                    password=self.password.data,
-                    project_count=0,
-                    user_level=0)
+                    password=self.password.data)
 
         return user.save()
 

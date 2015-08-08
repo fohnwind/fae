@@ -1,5 +1,27 @@
+{% set page_title = "Sign up" %}
+{% extends "layout.html" %}
 {% block body %}
-<div class="container">
 
+<div class="container">
+    <form class="form-signin" method="POST" action="{{ url_for('auth.register') }}">
+        <h2 class="form-signin-heading">Sign up fo FAE</h2>
+        <hr>
+        {{ form.username.label }}
+        {{ form.username(class="form-control", placeholder="Username", size=30) }}
+
+        {{ form.password.label }}
+        {{ form.password(class='form-control', placeholder='Password', size=40) }}
+
+        {{ form.confirm_password.label }}
+        {{ form.confirm_password(class='form-control', placeholder='Confirm  Your Password', size=40) }}
+
+        <div class="checkbox">
+            <label for="agree">test</label>
+            <input id="agree" name="agree" type="checkbox" value="y">
+        </div>
+
+        {{ form.submit(class="btn btn-lg btn-primary btn-block") }}
+        <br>
+    </form>
 </div>
 {% endblock%}

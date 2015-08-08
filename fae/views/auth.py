@@ -66,7 +66,6 @@ def register():
 
     return render_template("auth/register.html", form=form)
 
-    return "register"
 
 
 
