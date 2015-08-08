@@ -22,7 +22,7 @@ create table `project` (
     `container_ip` varchar(32) NOT NULL DEFAULT "172.17.0.1",
     `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `type` varchar(10) NOT NULL,
-    `intro` text DEFAULT "",
+    `intro` text,
     `owner` int(10) unsigned NOT NULL,
     PRIMARY KEY (`pid`)
 ) CHARSET=utf8;

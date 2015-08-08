@@ -13,4 +13,5 @@ redis_store = FlaskRedis()
 login_manager = LoginManager()
 
 babel = Babel()
+
 #docker_manager = docker.Client(base_url="unix://var/run/docker.sock")

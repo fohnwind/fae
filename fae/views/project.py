@@ -4,12 +4,13 @@ __author__ = 'fohnwind'
 from flask import Blueprint, render_template, request, redirect
 from flask_login import login_required
 from fae.configs.default import DefaultConfig
-
+from fae.extensions import docker_manager
 project = Blueprint("project", __name__)
 
 
 @project.route("/<name>")
 def project_info(name):
+    #return docker_manager.containers()
     return "pname"
 
 

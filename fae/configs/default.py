@@ -5,7 +5,7 @@ class DefaultConfig(object):
     TESTING = False
 
     # Auth
-    LOGIN_VIEW = 'views.auth.login'
+    LOGIN_VIEW = 'auth.login'
 
     # Security
     SECRET_KEY = 'fohnwind@78'
