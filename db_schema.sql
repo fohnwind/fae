@@ -19,13 +19,24 @@ drop table if exists `project`;
 create table `project` (
     `pid` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `pname` varchar(32) NOT NULL,
-    `container_ip` varchar(32) NOT NULL DEFAULT "172.17.0.1",
     `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `type` varchar(10) NOT NULL,
     `intro` text,
+    `url` varchar(128),
     `owner` int(10) unsigned NOT NULL,
     PRIMARY KEY (`pid`)
 ) CHARSET=utf8;
+
+
+drop table if exists `container`;
+create table `container` (
+    `cid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `cname` varchar(32) NOT NULL,
+    `ip` varchar(32) NOT NULL DEFAULT "172.17.0.0",
+    `image` varchar(32) NOT NULL,
+    `relation` int(10) unsigned NOT NULL,
+    PRIMARY KEY (`cid`)
+) CHARSET=utf8;
+
 
 
 drop table if exists `level`;
@@ -64,3 +75,4 @@ create table `project_logs` (
     `act_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`plog_id`)
 ) CHARSET=utf8;
+

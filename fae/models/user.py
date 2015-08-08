@@ -9,8 +9,8 @@ class User(db.Model):
 
     __tablename__ = 'user'
 
-    uid = db.Column(db.Integer(), primary_key=True)
-    username = db.Column(db.String(40), unique=True, nullable=False)
+    uid = db.Column(db.Integer(), unique=True, primary_key=True)
+    username = db.Column(db.String(40), nullable=False)
     sina_uid = db.Column(db.Integer(), unique=True)
     _password = db.Column('password', db.String(128), nullable=False)
     user_level = db.Column(db.Integer(), default=0)
@@ -59,7 +59,6 @@ class User(db.Model):
         return Project.query.filter_by(Project.owner == self.id)
 
     def save(self):
-        print self.username
         db.session.add(self)
         db.session.commit()
 
