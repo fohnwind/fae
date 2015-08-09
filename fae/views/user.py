@@ -11,7 +11,7 @@ user = Blueprint("user", __name__)
 @user.route("/index")
 #@login_required
 def index():
-    return "user index"
+    return render_template("user/index.html")
     #pass
 
 

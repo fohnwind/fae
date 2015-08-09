@@ -1,12 +1,13 @@
 __author__ = 'fohnwind'
 
 from flask import Flask,render_template
-from views.homepage import homepage
-from views.auth import auth
-from views.user import user
-from views.project import project
-from extensions import *
+from fae.views.homepage import homepage
+from fae.views.auth import auth
+from fae.views.user import user
+from fae.views.project import project
+from fae.extensions import *
 from fae.configs.fae_config import fae_config
+from fae.models.user import User
 
 def create_app(config=None):
     """Create the app."""
@@ -35,6 +36,18 @@ def configure_extensions(app):
 
     babel.init_app(app)
     login_manager.login_view = app.config["LOGIN_VIEW"]
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        u = db.session.query(User).filter(User.id == user_id).\
+            first()
+
+        if u:
+            return u
+        else:
+            return None
+
+
     login_manager.init_app(app)
 
     redis_store.init_app(app)

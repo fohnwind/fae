@@ -1,0 +1,10 @@
+
+{% if current_user.is_authenticated() %}
+{% set page_title = current_user.username %}
+{% extends "layout.html" %}
+{% block body %}
+  <h1 align="center">
+    Hi, {{ current_user.username }} !
+  </h1>
+{% endblock %}
+{% endif %}

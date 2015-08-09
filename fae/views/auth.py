@@ -12,27 +12,24 @@ auth = Blueprint("auth", __name__)
 
 @auth.route("/login",methods=["GET","POST"])
 def login():
+
     if current_user is not None and current_user.is_authenticated():
-        return redirect(url_for("user.profile"))
+        return redirect(url_for("user.index"))
 
     # print request.form
     form = LoginForm(request.form)
 
-    print type(form.username), type(form.password.data)
-
     if form.validate_on_submit():
-        print "1"
         user, authenticated = User.authenticate(form.username.data,
                                                 form.password.data)
 
-        print "get user"
         if user and authenticated:
+            print user.username
             login_user(user, remember=form.remember_me.data)
+
             return redirect(request.args.get("next") or
                             url_for('user.index'))
-        print "2"
         flash("wrong Username of Password.", "danger")
-    print "3"
 
     return render_template("auth/login.html", form=form)
 
