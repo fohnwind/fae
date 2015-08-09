@@ -4,24 +4,33 @@ __author__ = 'fohnwind'
 from flask import Blueprint, render_template, request, redirect
 from flask_login import login_required, current_user, login_user
 from fae.configs.default import DefaultConfig
+from werkzeug.utils import secure_filename
 #from fae.extensions import docker_manager
 from fae.models.project import Project
+import os
 
 project = Blueprint("project", __name__)
 
+@project.route("/")
+@login_required
+def index():
+    # return ""
+    return ""
 
 @project.route("/<name>")
 #@login_required
 def project_info(name):
-    #return docker_manager.containers()
-    return current_user
-    # projects = Project.query.filter_by(owner == current_user)
-    # return "pname"
+    # projects = Project.query.filter_by(Project.owner == current_user)
+    # return render_template("project/info.html", projects=projects)
+    return "pname"
 
 
-@project.route('/add', methods=['POST'])
+@project.route('/add', methods=['GET','POST'])
 def add_project():
-    return "add"
+    if request.method is 'POST':
+        return "test"
+
+    return render_template("project/add.html")
 
 
 @project.route('/delete', methods=['POST', 'DELETE'])
@@ -36,10 +45,10 @@ def update_project():
 
 @project.route('/<pname>/upload', methods=['GET', 'POST'])
 def upload_code():
-    if request.method == 'POST':
-        file = request.files['file']
-        if file:
-            filename = secure_file(file.filename)
+    if request.method is 'POST':
+        update_file = request.files['file']
+        if update_file:
+            filename = secure_filename(file.filename)
             filepath = os.path.join(DefaultConfig['UPLOAD_FOLDER'], filename)
             file.save(filepath)
             return filepath

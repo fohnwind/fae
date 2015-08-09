@@ -24,20 +24,20 @@
 
 
         {% if current_user and current_user.is_authenticated() %}
-            <div class="btn-group navbar-btn navbar-right">
-                <a class="btn btn-default" href="{{ url_for('user.index') }}">
+            <div class="navbar-btn navbar-right">
+                <a class="btn btn-default btn-group" href="{{ url_for('user.index') }}">
                     {{ current_user.username }}
                 </a>
 
                 <a class="btn btn-danger btn-group"  href="{{ url_for('auth.logout') }}">
-                    Logout
+                    &nbsp;Logout&nbsp;
                 </a>
             </div>
 
         {% else %}
             <div class="navbar-btn navbar-right">
                 <a class="btn btn-default btn-group" href="{{ url_for('auth.login') }}">
-                    Login
+                    &nbsp;Login&nbsp;
                 </a>
 
                 <a class="btn btn-primary btn-group" href="{{ url_for('auth.register') }}">

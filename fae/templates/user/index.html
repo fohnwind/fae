@@ -3,8 +3,23 @@
 {% set page_title = current_user.username %}
 {% extends "layout.html" %}
 {% block body %}
-  <h1 align="center">
-    Hi, {{ current_user.username }} !
-  </h1>
+<div class="container">
+  <div class="text-center">
+    <h1 align="center">
+      {{ current_user.username }} 当前的项目列表
+    </h1>
+  </div>
+
+  <div class="col-md-10">
+      <div class="text-right">
+        <a class="btn btn-default" href="{{ url_for('project.add_project')}}">
+          新增项目
+        </a>
+
+      </div>
+  </div>
+
+
+</div>
 {% endblock %}
 {% endif %}
