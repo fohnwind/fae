@@ -14,7 +14,7 @@ except ImportError:
 app = create_app(Config)
 manage = Manager(app)
 
-manage.add_command("runserver", Server("localhost", port=5555,))
+manage.add_command("runserver", Server("0.0.0.0", port=5555,))
 
 manage.add_command('db', MigrateCommand)
 
