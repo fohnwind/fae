@@ -20,19 +20,19 @@ class User(db.Model, UserMixin):
     def __init__(self, *args, **kwargs):
         super(User, self).__init__(*args, **kwargs)
 
-    # @property
-    # def levels(self):
-    #     return self.get_levels()
-    #
-    # @property
-    # def project_count(self):
-    #     return self.project_count
-    #
-    # def _get_password(self):
-    #     return self._password
-    #
-    # def _set_password(self, password):
-    #     self._password = generate_password_hash(password)
+    @property
+    def levels(self):
+        return self.get_levels()
+
+    @property
+    def project_count(self):
+        return self.project_count
+
+    def _get_password(self):
+        return self._password
+
+    def _set_password(self, password):
+        self._password = generate_password_hash(password)
 
     def check_password(self, password):
 
@@ -59,11 +59,11 @@ class User(db.Model, UserMixin):
 
         return user, authenticated
 
-    # def all_project(self):
-    #     return Project.query.filter_by(Project.owner == self.id)
-    #
-    # def save(self):
-    #     db.session.add(self)
-    #     db.session.commit()
-    #
-    #     return self
+    def all_project(self):
+        return Project.query.filter_by(Project.owner == self.id)
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+        return self
