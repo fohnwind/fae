@@ -43,10 +43,9 @@ def add_project():
              ng conf映射
             """
         return "test"
-    ng = Ngconf()
-    ng.name = "testapp"
-    ng.ip = "192.168.107.1"
+    ng = Ngconf(name="",ip="")
     ng.save()
+    ng.reload()
     return "success"
     #return render_template("project/add.html")
 

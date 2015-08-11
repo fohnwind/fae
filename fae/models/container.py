@@ -25,3 +25,7 @@ class Container(db.Model):
     def get_relation(self):
         return self.relation
 
+    def __init__(self, *args, **kwargs):
+        super(Container, self).__init__(*args, **kwargs)
+
+    def Create(self):

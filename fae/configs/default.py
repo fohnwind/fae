@@ -10,7 +10,7 @@ class DefaultConfig(object):
     # Security
     SECRET_KEY = 'fohnwind@78'
 
-
+    SITE_NAME = "fae.com"
     # URL Prefixes
     USER_URL_PREFIX = "/u"
     AUTH_URL_PREFIX = "/a"
