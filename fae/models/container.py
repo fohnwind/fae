@@ -1,6 +1,6 @@
 __author__ = 'fohnwind'
 
-from fae.extensions import db
+from fae.extensions import db, docker_manager
 
 
 class Container(db.Model):
@@ -28,4 +28,9 @@ class Container(db.Model):
     def __init__(self, *args, **kwargs):
         super(Container, self).__init__(*args, **kwargs)
 
-    def Create(self):
+    def startup(self):
+        container = docker_manager.create_container(image=self.image, name=self.cname, volumes=self.filepath)
+        docker_manager.start(container=container.get('Id'))
+        exec_item = docker_manager.exec_create(container=self.cname, cmd="/root/getip.sh")
+        result = docker_manager.exec_start(exec_id=exec_item.get('Id'))
+        return result  # return container IP
