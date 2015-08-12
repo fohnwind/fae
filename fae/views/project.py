@@ -8,6 +8,7 @@ from fae.configs.default import DefaultConfig
 from werkzeug.utils import secure_filename
 from fae.forms.project import CreateProjectForm, UpdateProjectForm
 from fae.models.project import Project
+from fae.models.container import Container
 import os
 from fae.utils.ng import Ngconf
 
@@ -36,6 +37,7 @@ def add_project():
         project_form = CreateProjectForm(request.form)
 
         if project_form.validate_on_submit():
+            project = Project()
             pass
             """
 
@@ -46,6 +48,7 @@ def add_project():
     ng = Ngconf(name="",ip="")
     ng.save()
     ng.reload()
+    container = Container()
     return "success"
     #return render_template("project/add.html")
 

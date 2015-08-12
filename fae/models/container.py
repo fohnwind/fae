@@ -19,8 +19,6 @@ class Container(db.Model):
     def get_ip(self):
         return self.ip
 
-    def set_ip(self, ip):
-        self.ip = ip
 
     def get_relation(self):
         return self.relation
@@ -28,9 +26,15 @@ class Container(db.Model):
     def __init__(self, *args, **kwargs):
         super(Container, self).__init__(*args, **kwargs)
 
-    def startup(self):
-        container = docker_manager.create_container(image=self.image, name=self.cname, volumes=self.filepath)
+    def startup(self,filepath):
+        container = docker_manager.create_container(image=self.image, name=self.cname, volumes=filepath)
         docker_manager.start(container=container.get('Id'))
         exec_item = docker_manager.exec_create(container=self.cname, cmd="/root/getip.sh")
-        result = docker_manager.exec_start(exec_id=exec_item.get('Id'))
-        return result  # return container IP
+        self.ip = docker_manager.exec_start(exec_id=exec_item.get('Id'))
+
+    def save(self):
+        db.session.save(self)
+        db.session.commit()
+
+
+
