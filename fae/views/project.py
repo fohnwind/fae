@@ -2,7 +2,7 @@
 __author__ = 'fohnwind'
 
 
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, login_user
 from fae.configs.default import DefaultConfig
 from werkzeug.utils import secure_filename
@@ -18,8 +18,8 @@ project = Blueprint("project", __name__)
 @project.route("/")
 @login_required
 def index():
-    # return ""
-    return ""
+    projects = Project.quert.filter_by(Project.owner==current_user)
+    return render_template("project/index.html",projects=projects)
 
 
 @project.route("/<name>")
@@ -32,25 +32,26 @@ def project_info(name):
 
 @project.route('/add', methods=['GET','POST'])
 def add_project():
+
     if request.method is 'POST':
 
         project_form = CreateProjectForm(request.form)
 
         if project_form.validate_on_submit():
             project = Project()
-            pass
+
             """
 
              init contianer
              ng conf映射
             """
-        return "test"
-    ng = Ngconf(name="",ip="")
-    ng.save()
-    ng.reload()
-    container = Container()
-    return "success"
-    #return render_template("project/add.html")
+            ng = Ngconf(name="",ip="")
+            ng.save()
+            container = Container()
+            if container.startup(filepath=):
+                return redirect( url_for("project.index"))
+
+    return render_template("project/add.html")
 
 
 @project.route('/delete', methods=['POST', 'DELETE'])

@@ -3,7 +3,7 @@ __author__ = 'fohnwind'
 import os, platform
 from mako.template import Template
 from fae.configs.default import DefaultConfig
-
+from sh import nginx
 
 class Ngconf(object):
 
@@ -16,6 +16,5 @@ class Ngconf(object):
             print >> fp, conf
             fp.close()
 
-    def reload(self):
-        os.system("nginx -s reload")
+            nginx("-s","reload")
 
