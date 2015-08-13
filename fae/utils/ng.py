@@ -7,6 +7,11 @@ from sh import nginx
 
 class Ngconf(object):
 
+    def __init__(self, name, ip):
+        super(Ngconf, self).__init__()
+        self.name = name
+        self.ip = ip
+
     def save(self):
         if self.name and self.ip:
             os.chdir('/home/fohnwind/ng/conf/')

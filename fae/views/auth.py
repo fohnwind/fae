@@ -29,6 +29,7 @@ def login():
 
             return redirect(request.args.get("next") or
                             url_for('user.index'))
+
         flash("wrong Username of Password.", "danger")
 
     return render_template("auth/login.html", form=form)

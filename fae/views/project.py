@@ -39,17 +39,16 @@ def add_project():
 
         if project_form.validate_on_submit():
             project = Project()
-
             """
 
              init contianer
              ng conf映射
             """
-            ng = Ngconf(name="",ip="")
-            ng.save()
             container = Container()
-            if container.startup(filepath=):
-                return redirect( url_for("project.index"))
+            container.startup(filepath=project.path.data)
+            ng = Ngconf(name=container.cname,ip=container.ip)
+            ng.save()
+            return redirect( url_for("project.index"))
 
     return render_template("project/add.html")
 

@@ -9,6 +9,7 @@ from fae.models.user import User
 from flask_babelex import lazy_gettext as _
 from fae.models.project import Project
 
+
 class CreateProjectForm(Form):
     pname = StringField(_("Project name"), validators=[
         DataRequired(message=_("A project name is required."))])
@@ -16,6 +17,7 @@ class CreateProjectForm(Form):
     type = SelectField(_("Choose a project type"))
     intro = TextAreaField(_("Project introduction"))
     submit = SubmitField("Create!")
+    path = TextAreaField(_("file path"))
 
     def save(self, user):
         uid = user.get_id()
