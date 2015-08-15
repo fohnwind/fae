@@ -36,5 +36,3 @@ class Container(db.Model):
         db.session.save(self)
         db.session.commit()
 
-
-
