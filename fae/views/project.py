@@ -33,25 +33,26 @@ def project_info(name):
 @project.route('/add', methods=['GET','POST'])
 def add_project():
 
-    if request.method is 'POST':
+    #project_form = CreateProjectForm(request.form)
 
-        project_form = CreateProjectForm(request.form)
+    #if request.method == 'POST':
+    if request.method == 'GET':
 
-        if project_form.validate_on_submit():
-            project = Project()
-            """
-
-             init contianer
-             ng conf映射
-            """
-            container = Container()
-            container.startup(filepath=project.path.data)
+        #if project_form.validate_on_submit():
+        #    project = Project()
+	    if 2 > 1:
+            #init contianer
+            #ng conf映射
+            #container = Container()
+			container = Container(image="fwd-php", cname="testcon")
+            #container.startup(filepath=project.path.data)
+            container.startup(filepath="/home/fohnwind/files/fohnwind/")
             ng = Ngconf(name=container.cname,ip=container.ip).save()
-            project.save()
+            #project.save()
             return redirect( url_for("project.index"))
 
-    return render_template("project/add.html")
-
+    #return render_template("project/add.html", form=project_form)
+    return "no"
 
 @project.route('/delete', methods=['POST', 'DELETE'])
 def delete_project():

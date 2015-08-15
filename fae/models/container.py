@@ -27,6 +27,7 @@ class Container(db.Model):
 
     def startup(self,filepath):
         container = docker_manager.create_container(image=self.image, name=self.cname, volumes=filepath)
+		# TODO change file volumns position
         docker_manager.start(container=container.get('Id'))
         exec_item = docker_manager.exec_create(container=self.cname, cmd="/root/getip.sh")
         self.ip = docker_manager.exec_start(exec_id=exec_item.get('Id'))
