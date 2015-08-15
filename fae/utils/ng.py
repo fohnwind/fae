@@ -16,10 +16,16 @@ class Ngconf(object):
         if self.name and self.ip:
             os.chdir('/home/fohnwind/ng/conf/')
             filename = self.name + "." + DefaultConfig.SITE_NAME + ".conf"
+
             fp = open(filename, 'w')
+
             conf = Template(filename="ngconf.default").render(ip=self.ip, name=self.name)
+
             print >> fp, conf
             fp.close()
 
             nginx("-s","reload")
 
+            return True
+
+        return False

@@ -19,7 +19,6 @@ class Container(db.Model):
     def get_ip(self):
         return self.ip
 
-
     def get_relation(self):
         return self.relation
 

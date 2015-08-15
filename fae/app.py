@@ -47,7 +47,6 @@ def configure_extensions(app):
         else:
             return None
 
-
     login_manager.init_app(app)
 
     redis_store.init_app(app)

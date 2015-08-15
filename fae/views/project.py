@@ -46,8 +46,8 @@ def add_project():
             """
             container = Container()
             container.startup(filepath=project.path.data)
-            ng = Ngconf(name=container.cname,ip=container.ip)
-            ng.save()
+            ng = Ngconf(name=container.cname,ip=container.ip).save()
+            project.save()
             return redirect( url_for("project.index"))
 
     return render_template("project/add.html")
