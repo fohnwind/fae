@@ -1,5 +1,11 @@
 {% set page_title = "CREATE" %}
 {% extends "layout.html" %}
+<script type="text/javascript">
+$(document).ready(function(){
+$("submt-file-btn").click(function(){
+   alert("123");
+})
+</script>
 {% block body %}
 <h2 align="center">Create a new project!</h2>
 <div id="addproject">
@@ -17,7 +23,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <span style="font-size:20px;font-family:Consolas;">.fae.com</span>
+                    <span style="font-size:24px;font-family:Consolas;">.fae.com</span>
                 </div>
 			</div>
 			
@@ -46,7 +52,7 @@
                 <div class="col-md-10">
 				{{ form.path.label }}
 				{{ form.path }}
-				<button id="submit-file-btn">upload</button>
+				<button class="submit-file-btn">upload</button>
 				<p class="help-block">upload your code(php/py/zip/tar.gz).</p>
                 </div>
 			</div>

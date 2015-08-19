@@ -63,14 +63,14 @@ def update_project():
     return "update"
 
 
-@project.route('/<pname>/upload', methods=['GET', 'POST'])
+@project.route('/upload', methods=['GET', 'POST'])
 def upload_code():
-    if request.method is 'POST':
-        update_file = request.files['file']
-        if update_file:
-            filename = secure_filename(file.filename)
-            filepath = os.path.join(DefaultConfig['UPLOAD_FOLDER'], filename)
-            file.save(filepath)
+    if request.method == 'POST':
+        upload_file = request.files['file']
+        if upload_file:
+            filename = secure_filename(upload_file.filename)
+            filepath = os.path.join('/home/fohnwind/fae/html/uploads', filename)
+            upload_file.save(filepath)
             return filepath
-
+        return "no"
     return render_template("project/upload.html")
