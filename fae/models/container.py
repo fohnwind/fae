@@ -1,7 +1,7 @@
 __author__ = 'fohnwind'
 
 from fae.extensions import db, docker_manager
-
+import docker
 
 class Container(db.Model):
 
@@ -26,8 +26,10 @@ class Container(db.Model):
         super(Container, self).__init__(*args, **kwargs)
 
     def startup(self,filepath):
-        container = docker_manager.create_container(image=self.image, name=self.cname, volumes=filepath)
-		# TODO change file volumns position
+        f_binds = "\'%s:/usr/share/nginx/html\'" % filepath
+        host_config = docker.utils.create_host_config(binds=[f_binds])
+        container = docker_manager.create_container(image=self.image, name=self.cname, volumes="/usr/share/nginx/html",host_config=host_config)
+        # TODO change file volumns position
         docker_manager.start(container=container.get('Id'))
         exec_item = docker_manager.exec_create(container=self.cname, cmd="/root/getip.sh")
         self.ip = docker_manager.exec_start(exec_id=exec_item.get('Id'))

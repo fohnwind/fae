@@ -33,10 +33,10 @@ def project_info(name):
 @project.route('/add', methods=['GET','POST'])
 def add_project():
 
-    #project_form = CreateProjectForm(request.form)
+    project_form = CreateProjectForm(request.form)
 
-    #if request.method == 'POST':
-    if request.method == 'GET':
+    if request.method == 'POST':
+    #if request.method == 'GET':
 
         #if project_form.validate_on_submit():
         #    project = Project()
@@ -51,8 +51,7 @@ def add_project():
             #project.save()
             return redirect( url_for("project.index"))
 
-    #return render_template("project/add.html", form=project_form)
-    return "no"
+    return render_template("project/add.html", form=project_form)
 
 @project.route('/delete', methods=['POST', 'DELETE'])
 def delete_project():
