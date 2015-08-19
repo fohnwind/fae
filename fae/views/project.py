@@ -2,12 +2,13 @@
 __author__ = 'fohnwind'
 
 
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user, login_user
 from fae.configs.default import DefaultConfig
 from werkzeug.utils import secure_filename
 from fae.forms.project import CreateProjectForm, UpdateProjectForm
 from fae.models.project import Project
+from fae.models.container import Container
 import os
 from fae.utils.ng import Ngconf
 
@@ -17,8 +18,8 @@ project = Blueprint("project", __name__)
 @project.route("/")
 @login_required
 def index():
-    # return ""
-    return ""
+    projects = Project.quert.filter_by(Project.owner==current_user)
+    return render_template("project/index.html",projects=projects)
 
 
 @project.route("/<name>")
@@ -31,24 +32,26 @@ def project_info(name):
 
 @project.route('/add', methods=['GET','POST'])
 def add_project():
-    if request.method is 'POST':
 
-        project_form = CreateProjectForm(request.form)
+    project_form = CreateProjectForm(request.form)
 
-        if project_form.validate_on_submit():
-            pass
-            """
+    if request.method == 'POST':
+    #if request.method == 'GET':
 
-             init contianer
-             ng conf映射
-            """
-        return "test"
-    ng = Ngconf(name="",ip="")
-    ng.save()
-    ng.reload()
-    return "success"
-    #return render_template("project/add.html")
+        #if project_form.validate_on_submit():
+        #    project = Project()
+	    if 2 > 1:
+            #init contianer
+            #ng conf映射
+            #container = Container()
+			container = Container(image="fwd-php", cname="testcon")
+            #container.startup(filepath=project.path.data)
+            container.startup(filepath="/home/fohnwind/files/fohnwind/")
+            ng = Ngconf(name=container.cname,ip=container.ip).save()
+            #project.save()
+            return redirect( url_for("project.index"))
 
+    return render_template("project/add.html", form=project_form)
 
 @project.route('/delete', methods=['POST', 'DELETE'])
 def delete_project():

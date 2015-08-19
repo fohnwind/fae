@@ -23,6 +23,7 @@ create table `project` (
     `intro` text,
     `url` varchar(128),
     `owner` int(10) unsigned NOT NULL,
+    `filepath` varchar(128) NOT NULL DEFAULT "",
     PRIMARY KEY (`pid`)
 ) CHARSET=utf8;
 

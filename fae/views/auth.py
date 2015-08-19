@@ -19,7 +19,8 @@ def login():
     # print request.form
     form = LoginForm(request.form)
 
-    if form.validate_on_submit():
+    #if form.validate_on_submit():
+    if True:
         user, authenticated = User.authenticate(form.username.data,
                                                 form.password.data)
 
@@ -29,6 +30,7 @@ def login():
 
             return redirect(request.args.get("next") or
                             url_for('user.index'))
+
         flash("wrong Username of Password.", "danger")
 
     return render_template("auth/login.html", form=form)
@@ -54,6 +56,7 @@ def register():
 
     form = RegisterForm(request.form)
 
+    #if form.validate_on_submit():
     if form.validate_on_submit():
         user = form.save()
         login_user(user)

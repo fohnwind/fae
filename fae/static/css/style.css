@@ -38,4 +38,19 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-d: #f0d6d6; padding: 0.5em; }
+
+#addproject {
+  margin: 50px 375px;
+}
+
+.wapper {
+  .make-row();
+  width: 600px;
+  margin: 0 auto;
+}
+
+.submit-file-btn {
+  font:12px/1.5 tahoma,arial,sans-serif;
+  vertical-align:middle;
+  cursor: pointer;
+}
