@@ -14,15 +14,14 @@ class CreateProjectForm(Form):
     pname = StringField(_("Project name"), validators=[
         DataRequired(message=_("A project name is required."))])
 
-    type = SelectField(_("Choose a project type"))
+    ptype = StringField(_("Choose a project type"))
     intro = TextAreaField(_("Project introduction"))
     submit = SubmitField("Create!")
     path = FileField(_("file path"))
-
     def save(self, user):
         uid = user.get_id()
-        url = "http://" + self.pname.data + ".fae.com"
-        project = Project(pname=self.pname.data, owner=uid, intro=self.intro.data, url=url)
+        #url = "http://" + self.pname.data + ".fae.com"
+        project = Project(pname=self.pname.data, owner=uid, intro=self.intro.data,ptype=self.ptype)
         return project.save()
 
 

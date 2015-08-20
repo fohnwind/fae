@@ -1,6 +1,6 @@
 __author__ = 'fohnwind'
 
-from flask import Blueprint,render_template
+from flask import Blueprint,render_template, send_from_directory
 
 homepage = Blueprint("homepage", __name__)
 
@@ -19,3 +19,8 @@ def about():
 @homepage.route("/guide")
 def guide():
     return render_template("homepage/guide.html")
+
+@homepage.route("/uploads/<filename>")
+def uploaded_file(filename):
+    return send_from_directory('/home/fohnwind/fae/html/uploads',filename)
+

@@ -9,7 +9,7 @@ class Project(db.Model):
     pid = db.Column(db.Integer(), primary_key=True, nullable=False)
     pname = db.Column(db.String(40), nullable=False)
     create_at = db.Column(db.DateTime, default=datetime.now())
-    type = db.Column(db.String(40), nullable=False)
+    ptype = db.Column(db.String(40), nullable=False)
     intro = db.Column(db.Text)
     owner = db.Column(db.Integer(), unique=True, nullable=False)
 	
@@ -19,5 +19,6 @@ class Project(db.Model):
 	    mkdir(path)
 	
     def save(self):
+        print self.__dict__
         db.session.add(self)
         db.session.commit()

@@ -18,7 +18,12 @@ project = Blueprint("project", __name__)
 @project.route("/")
 @login_required
 def index():
-    projects = Project.quert.filter_by(Project.owner==current_user)
+    projects = []
+    tmp = Project.query.filter_by(Project.owner==current_user)
+    for i in tmp:
+        projects.append(i)
+
+    print projects
     return render_template("project/index.html",projects=projects)
 
 
@@ -36,19 +41,19 @@ def add_project():
     project_form = CreateProjectForm(request.form)
 
     if request.method == 'POST':
-    #if request.method == 'GET':
+        pname = request.form['pname']
+        intro = request.form['intro']
+        ptype =  request.form['type']
 
-        #if project_form.validate_on_submit():
-        #    project = Project()
-	    if 2 > 1:
-            #init contianer
-            #ng conf映射
-            #container = Container()
-			container = Container(image="fwd-php", cname="testcon")
+        if 2 > 1:
+            container = Container(image=ptype)
             #container.startup(filepath=project.path.data)
-            container.startup(filepath="/home/fohnwind/files/fohnwind/")
+            filepath = "/home/fohnwind/files/%s/%s/" %(current_user.username, pname)
+            if not os.path.exists(filepath):
+                os.makedirs(filepath)
+            container.startup(filepath=filepath)
             ng = Ngconf(name=container.cname,ip=container.ip).save()
-            #project.save()
+            project = project_form.save(current_user)
             return redirect( url_for("project.index"))
 
     return render_template("project/add.html", form=project_form)

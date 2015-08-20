@@ -26,12 +26,12 @@ class Container(db.Model):
         super(Container, self).__init__(*args, **kwargs)
 
     def startup(self,filepath):
-        f_binds = "\'%s:/usr/share/nginx/html\'" % filepath
+        f_binds = "%s:/usr/share/nginx/html" % filepath
         host_config = docker.utils.create_host_config(binds=[f_binds])
-        container = docker_manager.create_container(image=self.image, name=self.cname, volumes="/usr/share/nginx/html",host_config=host_config)
+        container = docker_manager.create_container(image=self.image, volumes="/usr/share/nginx/html",host_config=host_config)
         # TODO change file volumns position
         docker_manager.start(container=container.get('Id'))
-        exec_item = docker_manager.exec_create(container=self.cname, cmd="/root/getip.sh")
+        exec_item = docker_manager.exec_create(container=container.get("Id"), cmd="/root/getip.sh")
         self.ip = docker_manager.exec_start(exec_id=exec_item.get('Id'))
 
     def save(self):

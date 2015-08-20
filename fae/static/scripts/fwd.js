@@ -18,4 +18,25 @@ $(document).ready(function(){
         });
         return false;
 	});
+
+    $('#submit').click(function(){
+        var pname = $('#pname').val();
+        var image = $('#type').val();
+        var intro = $('#intro').val();
+        if (pname) {
+            $.ajax({
+                url:"add",
+                type:"POST",
+                data:{"pname":pname,
+                       "type":image,
+                       "intro":intro
+                    },
+                success:function(a){
+                    alert(a);
+                }
+            
+            });
+        }
+        return false;
+    });
 });
