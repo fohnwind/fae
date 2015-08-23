@@ -13,12 +13,16 @@ class Project(db.Model):
     intro = db.Column(db.Text)
     owner = db.Column(db.Integer(), unique=True, nullable=False)
 	
+    def get_pid(self):
+        return self.pid
+
     def create_location():
 	    cd("/home/fohnwind/files")
-	    path = "\"%s/%s\"" % (self.owner,self.pname) 
+	    path = "\"%d/%s\"" % (self.owner,self.pname) 
 	    mkdir(path)
 	
     def save(self):
         print self.__dict__
         db.session.add(self)
         db.session.commit()
+        return self

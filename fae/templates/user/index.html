@@ -18,9 +18,27 @@
 
       </div>
   </div>
-
+   
+ <table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>name</th>
+            <th>type</th>
+            <th>create-time</th>
+        </tr>
+    </thead>
+    <tbody>
     {% for i in projects %}
+        <tr>
+            <th scope="row">{{ i.pid }}</th>
+            <th><a href="http://{{ i.pname }}.fae.com">{{ i.pname }}</a></th>
+            <th>{{ i.ptype }}</th>
+            <th>{{ i.create_at }}</th>
+       </tr>
     {% endfor%}
+    </tbody>
+ </table>
 </div>
 {% endblock %}
 {% endif %}

@@ -11,7 +11,7 @@ from fae.models.project import Project
 from fae.models.container import Container
 import os
 from fae.utils.ng import Ngconf
-
+from sh import mv, cp
 project = Blueprint("project", __name__)
 
 
@@ -19,11 +19,11 @@ project = Blueprint("project", __name__)
 @login_required
 def index():
     projects = []
-    tmp = Project.query.filter_by(Project.owner==current_user)
+    tmp = Project.query.filter(Project.owner==current_user.id)
     for i in tmp:
         projects.append(i)
 
-    print projects
+    #print projects
     return render_template("project/index.html",projects=projects)
 
 
@@ -41,20 +41,32 @@ def add_project():
     project_form = CreateProjectForm(request.form)
 
     if request.method == 'POST':
+        print request.form.__dict__
         pname = request.form['pname']
         intro = request.form['intro']
-        ptype =  request.form['type']
-
+        ptype =  request.form['ptype']
+        file_url = request.form.get('fileurl','a')
+        print ptype
         if 2 > 1:
             container = Container(image=ptype)
-            #container.startup(filepath=project.path.data)
-            filepath = "/home/fohnwind/files/%s/%s/" %(current_user.username, pname)
+            filepath = "/home/fohnwind/files/%d/%s/" %(current_user.id, pname)
             if not os.path.exists(filepath):
                 os.makedirs(filepath)
+            if file_url != 'a':
+                mv(file_url,filepath)
+            else:
+                cp("/home/fohnwind/files/fohnwind/index.html",filepath)
+
             container.startup(filepath=filepath)
-            ng = Ngconf(name=container.cname,ip=container.ip).save()
+            print str(container.ip) + "--------"
+
+            ng = Ngconf(name=pname,ip=container.ip).save()
             project = project_form.save(current_user)
-            return redirect( url_for("project.index"))
+            container.relation = project.get_pid()
+            container.save()
+            return url_for("user.index")
+
+        return "no"
 
     return render_template("project/add.html", form=project_form)
 

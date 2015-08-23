@@ -30,14 +30,7 @@ $("submt-file-btn").click(function(){
 			<div class="form-group">
 				<div class="col-md-10">
 				{{ form.ptype.label }}
-
-				<select id="type" class="form-control">
-					<option value="fwd-nginx">nginx</option>
-					<option value="fwd-php">nginx-php</option>
-					<option value="fwd-mysql">mysql</option>
-					<option value="fwd-tomcat">tomcat</option>
-					<option value="fwd-redis">redis</option>
-				</select>
+                {{ form.ptype(class="form-control")}}
                 </div>
 			</div>
 

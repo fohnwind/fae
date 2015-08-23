@@ -3,22 +3,28 @@ __author__ = 'fohnwind'
 
 from flask import Blueprint,render_template
 from fae.models.user import User
-from flask_login import login_required
+from fae.models.project import Project
+from flask_login import login_required, current_user
 
 user = Blueprint("user", __name__)
 
 
 @user.route("/index")
-#@login_required
+@login_required
 def index():
-    return render_template("user/index.html")
+    projects = []
+    tmp = Project.query.filter(Project.owner == current_user.id)
+    for i in tmp:
+        projects.append(i)
+
+    return render_template("user/index.html", projects=projects)
     #pass
 
 
 # @user.route("/<username>")
 # @user.route("/profile/<username>")
-@login_required
 @user.route("/profile/<username>")
+@login_required
 def profile(username):
     return "lalal" + username
 

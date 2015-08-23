@@ -21,18 +21,25 @@ $(document).ready(function(){
 
     $('#submit').click(function(){
         var pname = $('#pname').val();
-        var image = $('#type').val();
+        var image = $('#ptype').val();
         var intro = $('#intro').val();
+        var fileurl = '';
+        if (typeof(window.file_path)!="undefined") {
+            fileurl = window.file_path
+        }
+  
         if (pname) {
+    
             $.ajax({
                 url:"add",
                 type:"POST",
                 data:{"pname":pname,
-                       "type":image,
-                       "intro":intro
+                       "ptype":image,
+                       "intro":intro,
+                       "fileurl":fileurl
                     },
                 success:function(a){
-                    alert(a);
+                    window.location.href = a;
                 }
             
             });
