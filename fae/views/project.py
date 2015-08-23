@@ -11,14 +11,19 @@ from fae.models.project import Project
 from fae.models.container import Container
 import os
 from fae.utils.ng import Ngconf
-
+from sh import mv, cp
 project = Blueprint("project", __name__)
 
 
 @project.route("/")
 @login_required
 def index():
-    projects = Project.quert.filter_by(Project.owner==current_user)
+    projects = []
+    tmp = Project.query.filter(Project.owner==current_user.id)
+    for i in tmp:
+        projects.append(i)
+
+    #print projects
     return render_template("project/index.html",projects=projects)
 
 
@@ -36,20 +41,32 @@ def add_project():
     project_form = CreateProjectForm(request.form)
 
     if request.method == 'POST':
-    #if request.method == 'GET':
+        print request.form.__dict__
+        pname = request.form['pname']
+        intro = request.form['intro']
+        ptype =  request.form['ptype']
+        file_url = request.form.get('fileurl','a')
+        print ptype
+        if 2 > 1:
+            container = Container(image=ptype)
+            filepath = "/home/fohnwind/files/%d/%s/" %(current_user.id, pname)
+            if not os.path.exists(filepath):
+                os.makedirs(filepath)
+            if file_url != 'a':
+                mv(file_url,filepath)
+            else:
+                cp("/home/fohnwind/files/fohnwind/index.html",filepath)
 
-        #if project_form.validate_on_submit():
-        #    project = Project()
-	    if 2 > 1:
-            #init contianer
-            #ng conf映射
-            #container = Container()
-			container = Container(image="fwd-php", cname="testcon")
-            #container.startup(filepath=project.path.data)
-            container.startup(filepath="/home/fohnwind/files/fohnwind/")
-            ng = Ngconf(name=container.cname,ip=container.ip).save()
-            #project.save()
-            return redirect( url_for("project.index"))
+            container.startup(filepath=filepath)
+            print str(container.ip) + "--------"
+
+            ng = Ngconf(name=pname,ip=container.ip).save()
+            project = project_form.save(current_user)
+            container.relation = project.get_pid()
+            container.save()
+            return url_for("user.index")
+
+        return "no"
 
     return render_template("project/add.html", form=project_form)
 
@@ -63,14 +80,14 @@ def update_project():
     return "update"
 
 
-@project.route('/<pname>/upload', methods=['GET', 'POST'])
+@project.route('/upload', methods=['GET', 'POST'])
 def upload_code():
-    if request.method is 'POST':
-        update_file = request.files['file']
-        if update_file:
-            filename = secure_filename(file.filename)
-            filepath = os.path.join(DefaultConfig['UPLOAD_FOLDER'], filename)
-            file.save(filepath)
+    if request.method == 'POST':
+        upload_file = request.files['file']
+        if upload_file:
+            filename = secure_filename(upload_file.filename)
+            filepath = os.path.join('/home/fohnwind/fae/html/uploads', filename)
+            upload_file.save(filepath)
             return filepath
-
+        return "no"
     return render_template("project/upload.html")
