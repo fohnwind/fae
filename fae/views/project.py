@@ -30,9 +30,17 @@ def index():
 @project.route("/<name>")
 @login_required
 def project_info(name):
-    # projects = Project.query.filter_by(Project.owner == current_user)
-    # return render_template("project/info.html", projects=projects)
-    return "pname"
+    project_item = []
+    tmp = Project.query.filter(Project.pname==name)
+
+    if not tmp:
+        abort(404)
+    
+    #for i in tmp:
+    project_item = tmp[0]
+
+    return render_template("project/info.html", project=project_item)
+    #return "pname"
 
 
 @project.route('/add', methods=['GET','POST'])
