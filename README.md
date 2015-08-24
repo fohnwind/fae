@@ -8,9 +8,12 @@ just for fun && 实训项目
 
 20150727
 
+---
 
+20150823
 
 - `mysql -uroot < db_schema.sql`
 - change some config
-- `pip install -r requirement.txt`
+- `pip install -r requirements.txt`
 - `python manage.py runserver`
+
