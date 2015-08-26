@@ -54,3 +54,16 @@ body {
   vertical-align:middle;
   cursor: pointer;
 }
+
+.project-info {
+}
+
+.project-item {
+  font-size:18px;
+  font-family:"Microsoft YaHei",Helvetica, Arial, sans-serif;
+}
+
+.container-list {
+  width:30%;
+  margin:0 auto;
+}

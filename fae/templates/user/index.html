@@ -32,9 +32,10 @@
     {% for i in projects %}
         <tr>
             <th scope="row">{{ i.pid }}</th>
-            <th><a href="http://{{ i.pname }}.fae.com">{{ i.pname }}</a></th>
+            <th><a href="http://www.fae.com/p/{{ i.pname }}">{{ i.pname }}</a></th>
             <th>{{ i.ptype }}</th>
             <th>{{ i.create_at }}</th>
+            <th><a class="btn btn-default btn-sm" href="http://{{i.pname}}.fae.com">访问应用</a></th>
        </tr>
     {% endfor%}
     </tbody>

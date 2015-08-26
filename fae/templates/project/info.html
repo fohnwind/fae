@@ -2,7 +2,53 @@
 {% extends "layout.html" %}
 {% block body %}
 <div class="container">
-    <div class="">
-    <h1 class="text-center"><strong>{{ project.pname}}</strong></h1>
+    <div class="page-header text-center">
+        <h1>{{ project.pname }}&nbsp;&nbsp;<small>项目简介</small></h1>
+    </div>
+
+    <div class="project-info">
+        <div class="row">
+            <div class="col-md-6 text-right">
+              <p class="project-item">project name:</p>
+            </div>
+            <div class="col-md-6 text-left">
+              <p class="project-item">
+                {{ project.pname }}
+              </p>
+            </div>
+
+            <div class="col-md-6 text-right">
+              <p class="project-item">project introduction:</p>
+            </div>
+            <div class="col-md-6 text-left">
+              <p class="project-item">
+                {{ project.intro }}
+            </div>
+
+            <div class="col-md-6 text-right">
+              <p class="project-item">project type:</p>
+            </div>
+            <div class="col-md-6 text-left">
+              <p class="project-item">
+                <span class="label label-default">{{ project.ptype }}</span>
+            </div>
+        </div>
+    </div>
+
+    <hr color="black" height="10px"/>
+    <div class="container-list">
+        <div class="panel panel-primary">
+            <div class="panel-heading">容器列表</div>
+        </div>
+        
+        <ul class="list-group">
+            <li class="list-group-item">
+            <span class="badge">
+                fwd-php
+            </span>
+            ttest
+            </li>
+        </ul>
+    </div>
 </div>
 {% endblock %}
