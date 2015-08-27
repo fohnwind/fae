@@ -31,17 +31,20 @@ def index():
 @login_required
 def project_info(name):
     project_item = []
+    container_items = []
+
     tmp = Project.query.filter(Project.pname==name)
+
     if not tmp:
         abort(404)
     
-    #for i in tmp:
     project_item = tmp[0]
 
     tmp_containers = Container.query.filter(Container.relation == tmp[0].pid)
     for i in tmp_containers:
-        print i.cname
-    return render_template("project/info.html", project=project_item)
+        container_items.append(i)
+
+    return render_template("project/info.html", project=project_item, containers=container_items)
     #return "pname"
 
 

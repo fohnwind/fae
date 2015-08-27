@@ -9,7 +9,7 @@
     <div class="project-info">
         <div class="row">
             <div class="col-md-6 text-right">
-              <p class="project-item">project name:</p>
+              <p class="project-item">名称:</p>
             </div>
             <div class="col-md-6 text-left">
               <p class="project-item">
@@ -18,7 +18,7 @@
             </div>
 
             <div class="col-md-6 text-right">
-              <p class="project-item">project introduction:</p>
+              <p class="project-item">项目简介:</p>
             </div>
             <div class="col-md-6 text-left">
               <p class="project-item">
@@ -26,7 +26,7 @@
             </div>
 
             <div class="col-md-6 text-right">
-              <p class="project-item">project type:</p>
+              <p class="project-item">应用类型:</p>
             </div>
             <div class="col-md-6 text-left">
               <p class="project-item">
@@ -35,19 +35,50 @@
         </div>
     </div>
 
-    <hr color="black" height="10px"/>
+    <div class="project-upload" >
+        <div class="row">
+            <div class="col-md-10">
+                <p>change file</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10">
+                <input id="path" name="path" type="file">
+                <button class="btn btn-default submit-changefile-btn">upload</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <hr />
+        </div>
+    </div>
+
+
     <div class="container-list">
         <div class="panel panel-primary">
-            <div class="panel-heading">容器列表</div>
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-8">
+                    容器列表
+                    </div>
+                    
+                    <div class="col-md-4" style="text-align:right;">
+                        <a class="btn btn-default btn-xs">new</a>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <ul class="list-group">
+        {% for i in containers %}
             <li class="list-group-item">
             <span class="badge">
-                fwd-php
+                {{ i.image }}
             </span>
-            ttest
+                {{ i.ip }}
             </li>
+        {% endfor %}
         </ul>
     </div>
 </div>

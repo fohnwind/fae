@@ -14,7 +14,7 @@ class CreateProjectForm(Form):
     pname = StringField(_("Project name"), validators=[
         DataRequired(message=_("A project name is required."))])
 
-    ptype = SelectField(_("Choose a project type"), choices=[('fwd-nginx','nginx'),('fwd-php','nginx-php'),
+    ptype = SelectField(_("Choose a project type"), choices=[('fwd-ng','nginx'),('fwd-php','nginx-php'),
                                                 ('mysql','mysql'),('redis','redis')])
     intro = TextAreaField(_("Project introduction"))
     submit = SubmitField("Create!")
