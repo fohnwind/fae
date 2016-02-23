@@ -1,0 +1,17 @@
+upstream ${name} {
+    server ${ip}:80;
+}
+
+
+server {
+    listen 80;
+    server_name ${name}.fae.com;
+
+    access_log /home/fohnwind/fae/logs/access.log main;
+    error_log /home/fohnwind/fae/logs/error.log;
+
+    location / {
+    	proxy_pass http://${name};
+    }
+	
+}
