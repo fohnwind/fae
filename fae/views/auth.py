@@ -40,6 +40,9 @@ def login():
 def oauth():
     return "oauth"
 
+@auth.route("/qsso", methods=["POST"])
+def qsso():
+    return redirect( url_for("user.index"))
 
 @auth.route("/logout", methods=["GET", "POST"])
 def logout():

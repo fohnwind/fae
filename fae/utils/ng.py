@@ -1,6 +1,6 @@
 __author__ = 'fohnwind'
 
-import os, platform
+import os
 from mako.template import Template
 from fae.configs.default import DefaultConfig
 from sh import nginx
@@ -14,7 +14,7 @@ class Ngconf(object):
 
     def save(self):
         if self.name and self.ip:
-            os.chdir('/home/fohnwind/ng/conf/')
+            os.chdir('/home/fohnwind/fae/fae/ngconf')
             filename = self.name + "." + DefaultConfig.SITE_NAME + ".conf"
 
             fp = open(filename, 'w')
