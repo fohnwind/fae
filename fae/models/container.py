@@ -44,3 +44,9 @@ class Container(db.Model):
         db.session.add(self)
         db.session.commit()
         return self
+
+    def linkup(self):
+        #TODO
+        #find ip in table
+        #else get a new one
+        #linkup with the netdevice

@@ -47,7 +47,6 @@ class User(db.Model, UserMixin):
 
     @classmethod
     def authenticate(cls, login, password):
-        print "tmp"
         user = cls.query.filter(db.or_(User.username == login,
                                        User.sina_uid == login)).first()
 

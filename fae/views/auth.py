@@ -42,6 +42,10 @@ def oauth():
 
 @auth.route("/qsso", methods=["POST"])
 def qsso():
+    if session.get("id"):
+        return redirect( url_for("user.index"))
+
+        #sso code here
     return redirect( url_for("user.index"))
 
 @auth.route("/logout", methods=["GET", "POST"])

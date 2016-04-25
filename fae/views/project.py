@@ -2,18 +2,20 @@
 __author__ = 'fohnwind'
 
 
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import ( Blueprint, render_template, request, redirect, url_for,
+                        jsonify )
 from flask_login import login_required, current_user, login_user
 from fae.configs.default import DefaultConfig
 from werkzeug.utils import secure_filename
 from fae.forms.project import CreateProjectForm, UpdateProjectForm
 from fae.models.project import Project
 from fae.models.container import Container
-import os
 from fae.utils.ng import Ngconf
 from sh import mv, cp
-project = Blueprint("project", __name__)
+import os
 
+
+project = Blueprint("project", __name__)
 
 @project.route("/")
 @login_required
@@ -85,6 +87,8 @@ def add_project():
 
 @project.route('/delete', methods=['POST', 'DELETE'])
 def delete_project():
+    if not session.get("id"):
+        return jsonify("")
     return "delete"
 
 

@@ -19,7 +19,9 @@ class Project(db.Model):
     def create_location():
 	    cd("/home/fohnwind/files")
 	    path = "\"%d/%s\"" % (self.owner,self.pname) 
-	    mkdir(path)
+        if not os.path.exists(path):
+	        return mkdir(path)
+        return false
 	
     def save(self):
         print self.__dict__

@@ -8,7 +8,7 @@ class DefaultConfig(object):
     LOGIN_VIEW = 'auth.login'
 
     # Security
-    SECRET_KEY = 'fohnwind@78'
+    SECRET_KEY = 'valar morghulis'
 
     SITE_NAME = "fae.com"
     # URL Prefixes
