@@ -15,7 +15,7 @@ from sh import mv, cp
 import os
 
 
-project = Blueprint("project", __name__)
+container = Blueprint("container", __name__)
 
 @project.route("/")
 @login_required

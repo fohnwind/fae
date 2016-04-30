@@ -1,14 +1,12 @@
-DROP DATABASE if exists fae;
-CREATE DATABASE fae;
+DROP DATABASE if exists alpha;
+CREATE DATABASE alpha;
 
-use fae;
+use alpha;
 
 drop table if exists `user`;
 create table `user` (
     `uid` int(10) unsigned NOT NULL AUTO_INCREMENT,
-    `sina_uid` bigint(20) unsigned DEFAULT NULL,
     `username` varchar(32) NOT NULL,
-    `password` varchar(128) DEFAULT NULL,
     `user_level` int(4) DEFAULT 0,
     `project_count` int(4) DEFAULT 0,
      PRIMARY KEY (`uid`)
@@ -27,6 +25,13 @@ create table `project` (
     PRIMARY KEY (`pid`)
 ) CHARSET=utf8;
 
+drop table if exists `project_template`;
+create table `project_template` (
+    `ptid` int(10) unsigned NOT NULL AUTO_INCREMENT;
+    `ptname` varchar(32) NOT NULL,
+    `ptinfo` varchar(512) NOT NULL,
+    PRIMARY KEY  (`ptid`)
+) CHARSET=utf8;
 
 drop table if exists `container`;
 create table `container` (
@@ -57,7 +62,7 @@ create table `version` (
 ) CHARSET=utf8;
 
 
-drop table if exists `container_logs`;
+/*drop table if exists `container_logs`;
 create table `container_logs` (
     `clog_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `pid` int(10) unsigned NOT NULL,
@@ -76,4 +81,6 @@ create table `project_logs` (
     `act_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`plog_id`)
 ) CHARSET=utf8;
+*/
+
 

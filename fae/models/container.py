@@ -46,6 +46,7 @@ class Container(db.Model):
         return self
 
     def linkup(self):
+        pass
         #TODO
         #find ip in table
         #else get a new one
