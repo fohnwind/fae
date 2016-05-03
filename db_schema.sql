@@ -62,6 +62,11 @@ create table `version` (
 ) CHARSET=utf8;
 
 
+drop table if exists `ip_pool`;
+create table `ip_pool` (
+    
+
+) CHARSET=utf8;
 /*drop table if exists `container_logs`;
 create table `container_logs` (
     `clog_id` int(10) unsigned NOT NULL AUTO_INCREMENT,

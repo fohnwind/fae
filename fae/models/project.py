@@ -17,10 +17,10 @@ class Project(db.Model):
         return self.pid
 
     def create_location():
-	    cd("/home/fohnwind/files")
-	    path = "\"%d/%s\"" % (self.owner,self.pname) 
+        cd("/home/fohnwind/files")
+        path = "\"%d/%s\"" % (self.owner,self.pname) 
         if not os.path.exists(path):
-	        return mkdir(path)
+            return mkdir(path)
         return false
 	
     def save(self):

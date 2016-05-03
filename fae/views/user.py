@@ -1,7 +1,7 @@
 __author__ = 'fohnwind'
 
 
-from flask import Blueprint,render_template
+from flask import Blueprint, render_template, session, jsonify
 from fae.models.user import User
 from fae.models.project import Project
 from flask_login import login_required, current_user
@@ -9,11 +9,11 @@ from flask_login import login_required, current_user
 user = Blueprint("user", __name__)
 
 
+@user.route("/")
 @user.route("/index")
-@login_required
 def index():
     projects = []
-    tmp = Project.query.filter(Project.owner == current_user.id)
+    tmp = Project.query.filter(Project.owner == '1')
     for i in tmp:
         projects.append(i)
 

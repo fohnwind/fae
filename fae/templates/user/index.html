@@ -1,45 +1,45 @@
-
-{% if current_user.is_authenticated() %}
-{% set page_title = current_user.username %}
+{% set page_title = session.get("id") %}
 {% extends "layout.html" %}
 {% block body %}
-<div class="container">
-  <div class="text-center">
-    <h1 align="center">
-      {{ current_user.username }} 当前的项目列表
-    </h1>
-  </div>
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Project
+                <small>Manage</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <i class="fa fa-dashboard"></i>  <a href="index.html">项目管理</a>
+                </li>
+                <li class="active">
+                    <i class="fa fa-file"></i> 项目列表
+                </li>
+            </ol>
+        </div>
+    </div>
 
-  <div class="col-md-10">
-      <div class="text-right">
-        <a class="btn btn-default" href="{{ url_for('project.add_project')}}">
-          新增项目
-        </a>
+     
+   <table class="table table-hover">
+      <thead>
+          <tr>
+              <th>#</th>
+              <th>name</th>
+              <th>type</th>
+              <th>create-time</th>
+          </tr>
+      </thead>
+      <tbody>
+      {% for i in projects %}
+          <tr>
+              <th scope="row">{{ i.pid }}</th>
+              <th><a href="http://www.fae.com/p/{{ i.pname }}">{{ i.pname }}</a></th>
+              <th>{{ i.ptype }}</th>
+              <th>{{ i.create_at }}</th>
+              <th><a class="btn btn-default btn-sm" href="http://{{i.pname}}.fae.com">访问应用</a></th>
+         </tr>
+      {% endfor%}
+      </tbody>
+   </table>
 
-      </div>
-  </div>
-   
- <table class="table table-hover">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>name</th>
-            <th>type</th>
-            <th>create-time</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for i in projects %}
-        <tr>
-            <th scope="row">{{ i.pid }}</th>
-            <th><a href="http://www.fae.com/p/{{ i.pname }}">{{ i.pname }}</a></th>
-            <th>{{ i.ptype }}</th>
-            <th>{{ i.create_at }}</th>
-            <th><a class="btn btn-default btn-sm" href="http://{{i.pname}}.fae.com">访问应用</a></th>
-       </tr>
-    {% endfor%}
-    </tbody>
- </table>
-</div>
 {% endblock %}
-{% endif %}

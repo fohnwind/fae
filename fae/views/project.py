@@ -61,8 +61,8 @@ def add_project():
         ptype =  request.form['ptype']
         file_url = request.form.get('fileurl','a')
 
-        // TODO
-        if :
+        #// TODO
+        if 2 > 1:
             container = Container(image=ptype)
             filepath = "/home/fohnwind/files/%d/%s/" %(current_user.id, pname)
             if not os.path.exists(filepath):
