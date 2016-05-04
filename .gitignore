@@ -62,4 +62,5 @@ target/
 # UPLOADS
 uploads/
 
-
+#log
+log/

@@ -47,7 +47,7 @@ def info(name):
 
 @container.route('/add', methods=['GET','POST'])
 def add():
-    return render_template("project/add.html")
+    return render_template("container/add.html")
 
 @container.route('/delete', methods=['POST', 'DELETE'])
 def delete():
