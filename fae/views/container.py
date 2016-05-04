@@ -3,12 +3,12 @@ __author__ = 'fohnwind'
 
 
 from flask import ( Blueprint, render_template, request, redirect, url_for,
-                        jsonify )
-from flask_login import login_required, current_user, login_user
+                        jsonify, session)
 from fae.configs.default import DefaultConfig
 from werkzeug.utils import secure_filename
 from fae.forms.project import CreateProjectForm, UpdateProjectForm
 from fae.models.project import Project
+from fae.models.user import User
 from fae.models.container import Container
 from fae.utils.ng import Ngconf
 from sh import mv, cp
@@ -19,17 +19,14 @@ container = Blueprint("container", __name__)
 
 @container.route("/")
 def index():
-    projects = []
-    tmp = Project.query.filter(Project.owner==current_user.id)
-    for i in tmp:
-        projects.append(i)
-
-    #print projects
-    return render_template("project/index.html",projects=projects)
+    uname = session.get('id')
+    uid = User.query.filter(User.username == uname).first().getid()
+    return render_template("container/index.html",containers = \
+               [i for i in Container.query.filter(Container.relation == uid)])
 
 
 @container.route("/<name>")
-def container_info(name):
+def info(name):
     project_item = []
     container_items = []
 
@@ -49,18 +46,18 @@ def container_info(name):
 
 
 @container.route('/add', methods=['GET','POST'])
-def add_container():
-    return render_template("project/add.html", form=project_form)
+def add():
+    return render_template("project/add.html")
 
 @container.route('/delete', methods=['POST', 'DELETE'])
-def delete_project():
+def delete():
     if not session.get("id"):
         return jsonify("")
     return "delete"
 
 
 @container.route('/update', methods=['POST', 'UPDATE'])
-def update_project():
+def update():
     return "update"
 
 

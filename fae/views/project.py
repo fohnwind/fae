@@ -3,14 +3,15 @@ __author__ = 'fohnwind'
 
 
 from flask import ( Blueprint, render_template, request, redirect, url_for,
-                        jsonify )
-from flask_login import login_required, current_user, login_user
+                        jsonify, session)
 from fae.configs.default import DefaultConfig
 from werkzeug.utils import secure_filename
 from fae.forms.project import CreateProjectForm, UpdateProjectForm
 from fae.models.project import Project
+from fae.models.user import User
 from fae.models.container import Container
 from fae.utils.ng import Ngconf
+from fae.utils.login import login_r
 from sh import mv, cp
 import os
 
@@ -18,10 +19,18 @@ import os
 project = Blueprint("project", __name__)
 
 @project.route("/")
-@login_required
+@login_r
 def index():
+    uname = session.get('id')
+    user = User.query.filter(User.username == uname).first()
+    if not user:
+        newU = User(username = uname)
+        user = newU.save()
+
+    uid = user.getid()
+    print uid
+    tmp = Project.query.filter(Project.owner == uid)
     projects = []
-    tmp = Project.query.filter(Project.owner==current_user.id)
     for i in tmp:
         projects.append(i)
 
@@ -30,7 +39,6 @@ def index():
 
 
 @project.route("/<name>")
-@login_required
 def project_info(name):
     project_item = []
     container_items = []

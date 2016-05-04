@@ -18,10 +18,10 @@
             <a href="javascript:;" data-toggle="collapse" data-target="#container"><i class="fa fa-fw fa-arrows-v"></i> 容 器 管 理<i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="container" class="collapse">
                 <li>
-                    <a href="#"> 容 器 列 表</a>
+                    <a href="{{ url_for('container.index') }}"> 容 器 列 表</a>
                 </li>
                 <li>
-                    <a href="#"> 新 建 容 器</a>
+                    <a href="{{ url_for('container.add') }}"> 新 建 容 器</a>
                 </li>
                 <li>
                     <a href="#"> 使 用 详 情</a>

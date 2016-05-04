@@ -19,7 +19,7 @@ class DefaultConfig(object):
     HOMEPAGE_URL_REFIX = ""
 
     # DB
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:@127.0.0.1/fae'
+    SQLALCHEMY_DATABASE_URI = 'mysql://root:@127.0.0.1/alpha'
     SQLALCHEMY_ECHO = False
 
     # UPLOAD

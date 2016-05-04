@@ -13,8 +13,8 @@ class Container(db.Model):
     image = db.Column(db.String(40), nullable=False)
     relation = db.Column(db.Integer(), unique=True, nullable=False)
 
-    #def create(self2):
-    #    pass
+    def __init__(self, *args, **kwargs):
+        super(User, self).__init__(*args, **kwargs)
 
     def get_ip(self):
         return self.ip

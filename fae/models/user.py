@@ -8,7 +8,7 @@ from flask_login import UserMixin
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
 
-    id = db.Column(db.Integer(), unique=True, primary_key=True)
+    uid = db.Column(db.Integer(), unique=True, primary_key=True)
     username = db.Column(db.String(40), nullable=False)
     # user_level = db.Column(db.Integer(), default=0)
     # project_count = db.Column(db.Integer(), default=0)
@@ -26,8 +26,11 @@ class User(db.Model, UserMixin):
     def project_count(self):
         return self.project_count
 
+    def getid(self):
+        return self.uid
+
     def all_project(self):
-        return Project.query.filter_by(Project.owner == self.id)
+        return Project.query.filter_by(Project.owner == self.uid)
 
     def save(self):
         db.session.add(self)

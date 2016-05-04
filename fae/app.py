@@ -36,22 +36,6 @@ def configure_extensions(app):
 
     db.init_app(app)
 
-    babel.init_app(app)
-    login_manager.login_view = app.config["LOGIN_VIEW"]
-
-    @login_manager.user_loader
-    def load_user(user_id):
-        u = db.session.query(User).filter(User.id == user_id).\
-            first()
-
-        if u:
-            return u
-        else:
-            return None
-
-    login_manager.init_app(app)
-
-    redis_store.init_app(app)
     pass
 
 def configure_context_processors(app):

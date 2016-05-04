@@ -27,10 +27,10 @@ create table `project` (
 
 drop table if exists `project_template`;
 create table `project_template` (
-    `ptid` int(10) unsigned NOT NULL AUTO_INCREMENT;
+    `ptid` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `ptname` varchar(32) NOT NULL,
     `ptinfo` varchar(512) NOT NULL,
-    PRIMARY KEY  (`ptid`)
+    PRIMARY KEY (`ptid`)
 ) CHARSET=utf8;
 
 drop table if exists `container`;
@@ -64,9 +64,10 @@ create table `version` (
 
 drop table if exists `ip_pool`;
 create table `ip_pool` (
-    
-
+    `ipaddr` varchar(32) NOT NULL,
+    `allowcated` int(1) unsigned NOT NULL DEFAULT 0
 ) CHARSET=utf8;
+
 /*drop table if exists `container_logs`;
 create table `container_logs` (
     `clog_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
