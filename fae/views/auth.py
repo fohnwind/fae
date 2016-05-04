@@ -11,7 +11,7 @@ auth = Blueprint("auth", __name__)
 def login():
     username = request.form.get("username")
     session['id'] = username
-    return redirect( url_for("user.index"))
+    return redirect(url_for("user.index"))
 
 @auth.route("/sso",methods=["POST"])
 def sso():
@@ -24,7 +24,7 @@ def sso():
     if apiResp['ret']:
         session.permanent = True
         session['id'] = apiResp['userid']
-        return redirect( url_for('user.index'))
+        return redirect(url_for('user.index'))
 
 
 @auth.route("/logout", methods=["GET","POST"])

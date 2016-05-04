@@ -1,6 +1,7 @@
 __author__ = 'fohnwind'
 
-from flask import Blueprint,render_template, send_from_directory
+from flask import (Blueprint,render_template, send_from_directory, session, 
+                     redirect, url_for)
 
 homepage = Blueprint("homepage", __name__)
 
@@ -8,6 +9,8 @@ homepage = Blueprint("homepage", __name__)
 @homepage.route("/index")
 @homepage.route("/homepage")
 def index():
+    if session.get('id'):
+        return redirect(url_for('user.index'))
     return render_template("homepage/index.html")
 
 

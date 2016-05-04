@@ -1,38 +1,41 @@
 <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav side-nav">
         <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#project"><i class="fa fa-fw fa-dashboard"></i>项 目 管 理<i class="fa fa-fw fa-caret-down"></i></a>
+            <a href="{{ url_for('user.index') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+        </li>
+        <li>
+            <a href="javascript:;" data-toggle="collapse" data-target="#project"><i class="fa fa-fw fa-desktop"></i> 项 目 管 理<i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="project" class="collapse">
                 <li>
-                    <a href="#">项 目 列 表</a>
+                    <a href="{{ url_for('project.index') }}"> 项 目 列 表</a>
                 </li>
                 <li>
-                    <a href="#">新 建 项 目</a>
+                    <a href="{{ url_for('project.add_project') }}"> 新 建 项 目</a>
                 </li>
             </ul>
         </li>
         <li>
-            <a href="javascript:;" data-toggle="collapse" data-target="#container"><i class="fa fa-fw fa-arrows-v"></i>容 器 管 理<i class="fa fa-fw fa-caret-down"></i></a>
+            <a href="javascript:;" data-toggle="collapse" data-target="#container"><i class="fa fa-fw fa-arrows-v"></i> 容 器 管 理<i class="fa fa-fw fa-caret-down"></i></a>
             <ul id="container" class="collapse">
                 <li>
-                    <a href="#">容 器 列 表</a>
+                    <a href="#"> 容 器 列 表</a>
                 </li>
                 <li>
-                    <a href="#">新 建 容 器</a>
+                    <a href="#"> 新 建 容 器</a>
                 </li>
                 <li>
-                    <a href="#">使 用 详 情</a>
+                    <a href="#"> 使 用 详 情</a>
                 </li>
             </ul>
         </li>
         <li>
-            <a href="#"><i class="fa fa-fw fa-edit"></i>操 作 记 录</a>
+            <a href="#"><i class="fa fa-fw fa-edit"></i> 操 作 记 录</a>
         </li>
         <li>
-            <a href="#"><i class="fa fa-fw fa-file"></i>关 于FAE</a>
+            <a href="{{ url_for('homepage.about')}}"><i class="fa fa-fw fa-file"></i> 关 于 FAE</a>
         </li>       
         <li>
-            <a href="#"><i class="fa fa-fw fa-wrench"></i>   设 置   </a>
+            <a href="{{ url_for('user.setting') }}"><i class="fa fa-fw fa-wrench"></i>   设   置   </a>
         </li>       
     </ul>
 </div>

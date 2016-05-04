@@ -1,14 +1,18 @@
 
 #addproject {
-  margin: 50px 375px;
+    margin-top:50px;
 }
 
-.wapper {
-  .make-row();
-  width: 600px;
-  margin: 0 auto;
+.add-project-form {
+    width:50%;
 }
 
+
+#homepage {
+    width:100%;
+    height:100%;
+    display:table;
+}
 .submit-file-btn {
   font:12px/1.5 tahoma,arial,sans-serif;
   vertical-align:middle;

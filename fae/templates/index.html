@@ -28,40 +28,25 @@
 
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
 	<!--script src="{{ url_for('static', filename='scripts/fwd.js') }}" type="text/javascript" charset="utf-8"></script-->
 </head>
 <body>
-    <div id="wrapper">
-       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="homepage">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 
     {% block navbar %}
         {% include "navbar.html" %}
     {% endblock %}
-    
-    {% if session.get("id")%}
-    {% block sidebar %}
-        {% include "sidebar.html" %}
-    {% endblock %}
-    {% endif %}
-         </nav>
-    {% if session.get("id")%}
-        <div id="page-wrapper">
-            <div class="container-fluid">
-    {% endif %}
+    </nav>
+
     {% block body %}
    
     {% endblock %}
-    {% if session.get("id")%}
-            </div>
-        </div>
-    {% endif %}
-    <!-- /#Wrapper -->
-    </div>
     <!-- jQuery -->
     <script src="{{ url_for('static', filename='scripts/jquery.js') }}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="{{ url_for('static', filename='scripts/bootstrap.min.js') }}"></script>
+    </div>
 </body>
 </html>

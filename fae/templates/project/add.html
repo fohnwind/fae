@@ -7,11 +7,11 @@ $("submt-file-btn").click(function(){
 })
 </script>
 {% block body %}
-<h2 align="center">Create a new project!</h2>
 <div id="addproject">
+    <h2 style="margin-left:400px;">Create a new project!</h2>
 	<div class="container">
 		<form class="form-horizontal">
-	    <div class="wapper">
+	    <div class="add-project-form">
 			<div class="form-group">
 				<div class="col-md-10">
                 {{ form.pname.label(class="control-label") }}
@@ -45,7 +45,7 @@ $("submt-file-btn").click(function(){
                 <div class="col-md-10">
 				{{ form.path.label }}
 				{{ form.path }}
-				<button class="submit-file-btn">upload</button>
+				<button class="btn btn-default submit-file-btn">upload</button>
 				<p class="help-block">upload your code(php/py/zip/tar.gz).</p>
                 </div>
 			</div>

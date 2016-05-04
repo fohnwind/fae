@@ -5,6 +5,7 @@ from fae.views.homepage import homepage
 from fae.views.auth import auth
 from fae.views.user import user
 from fae.views.project import project
+from fae.views.container import container
 from fae.extensions import *
 from fae.configs.fae_config import fae_config
 from fae.models.user import User
@@ -28,6 +29,7 @@ def configure_blueprint(app):
     app.register_blueprint(auth, url_prefix=app.config["AUTH_URL_PREFIX"])
     app.register_blueprint(user, url_prefix=app.config["USER_URL_PREFIX"])
     app.register_blueprint(project, url_prefix=app.config["PROJECT_URL_PREFIX"])
+    app.register_blueprint(container, url_prefix=app.config["CONTAINER_URL_PREFIX"])
 
 
 def configure_extensions(app):

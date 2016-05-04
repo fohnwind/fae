@@ -10,8 +10,6 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer(), unique=True, primary_key=True)
     username = db.Column(db.String(40), nullable=False)
-    sina_uid = db.Column(db.Integer(), unique=True)
-    _password = db.Column('password', db.String(128), nullable=False)
     # user_level = db.Column(db.Integer(), default=0)
     # project_count = db.Column(db.Integer(), default=0)
 
@@ -27,36 +25,6 @@ class User(db.Model, UserMixin):
     @property
     def project_count(self):
         return self.project_count
-
-    def _get_password(self):
-        return self._password
-
-    def _set_password(self, password):
-        self._password = generate_password_hash(password)
-
-    def check_password(self, password):
-
-        if self._password is None:
-            return False
-
-        if password is None:
-            return False
-
-        return True
-        # return check_password_hash(self._password, password)
-
-    @classmethod
-    def authenticate(cls, login, password):
-        user = cls.query.filter(db.or_(User.username == login,
-                                       User.sina_uid == login)).first()
-
-        print type(user)
-        if user:
-            authenticated = user.check_password(password)
-        else:
-            authenticated = False
-
-        return user, authenticated
 
     def all_project(self):
         return Project.query.filter_by(Project.owner == self.id)
